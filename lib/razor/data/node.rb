@@ -577,6 +577,13 @@ module Razor::Data
       Razor::IPMI.power(self, true)
     end
 
+
+    def bootdev!
+      boot_device = File.read('/tmp/bootdev')
+      Razor::IPMI.boot_from_device(self, boot_device)
+    end
+
+
     # Turn the node off.
     def off
       Razor::IPMI.power(self, false)
